@@ -8,4 +8,12 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+        --color-primary: #0096ff;
+        -- font-family: 'Bricolage Grotesque',sans-serif;
+        --animate-glow: glow 1.5s infinite;
+
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 5px olive; }
+    50% { box-shadow: 0 0 10px #fff; }
+  }
 }
