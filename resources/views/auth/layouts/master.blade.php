@@ -17,16 +17,24 @@
         }
     </style>
 </head>
-<body class="bg-green-500">
+<body class="bg-green-500" >
     <div class="flex flex-col justify-center items-center h-screen ">
-        <div class="mb-5">
-
-        </div>
-        <form action="" class="flex flex-col justify-center align-middle  p-10 shadow-lg animate-glow shadow-green-300 w-full max-w-lg gap-4 bg-white rounded-2xl">
-            <h1 class="text-center text-4xl text-green-700">Register</h1>
-            <input type="text" placeholder="Enter User Name" class="rounded-md px-3 py-2 transition duration-500 border-shadow mb-2 w-100">
-            <input type="text" placeholder="Enter User Name">
-            <input type="text" placeholder="Enter User Name">
+        <form action="" class="flex flex-col justify-center align-middle  p-10 shadow shadow-green-300 w-full max-w-lg gap-4 bg-white rounded-2xl">
+            <div class="flex justify-center">
+                <h1 class="text-center text-4xl text-green-700">Register</h1>
+                <img src="{{asset('masterImages/logo.png')}}" class="h-12 w-12 border-green-600 border-2 rounded-full ms-5">
+            </div>
+            <input type="text" placeholder="Enter User Name" class="rounded-md px-3 py-2 transition duration-500 border-2 mb-2 w-full border-neutral-300 focus:border-green-500 focus:outline-none focus:ring-0">
+            <input type="text" placeholder="Enter Email" class="rounded-md px-3 py-2 transition duration-500 border-2 mb-2 w-full border-neutral-300 focus:border-green-500 focus:outline-none focus:ring-0">
+            <input type="text" placeholder="Enter Password" class="rounded-md px-3 py-2 transition duration-500 border-2 mb-2 w-full border-neutral-300 focus:border-green-500 focus:outline-none focus:ring-0">
+            <input type="text" placeholder="Enter Confirm Password" class="rounded-md px-3 py-2 transition duration-500 border-2 mb-2 w-full border-neutral-300 focus:border-green-500 focus:outline-none focus:ring-0 focus:border-3">
+            <div class="flex items-center justify-center">
+                <button class="bg-green-500 text-white py-2 px-3 rounded-2xl mx-2">Sign Up</button>
+                <button class="bg-green-500 text-white py-2 px-3 rounded-2xl mx-2">As Guest</button>
+            </div>
+            <div class="flex justify-center items-center">
+                <p class="text-center text-stone-500">Have an account?</p><a href="#" class="ms-2 bold text-indigo-600">Login</a>
+            </div>
         </form>
     </div>
 </body>

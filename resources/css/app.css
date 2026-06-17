@@ -1,3 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@theme {
+  --animate-glow: glow 1.5s infinite;
+
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 5px olive; }
+    50% { box-shadow: 0 0 10px #fff; }
+  }
+}
