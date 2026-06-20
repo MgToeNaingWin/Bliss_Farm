@@ -32,3 +32,11 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+use Laravel\Socialite\Socialite;
+use App\Http\Controllers\User\SocialLoginController;
+
+
+Route::get('/auth/google/redirect', [SocialLoginController::class, 'socialredirect'])->name('socialLogin');
+
+Route::get('/auth/google/callback', [SocialLoginController::class, 'callback'])->name('socialCallback');
