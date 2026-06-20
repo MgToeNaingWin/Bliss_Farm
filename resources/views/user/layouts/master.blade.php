@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,15 +54,14 @@
                 <form action="{{route('logout')}}" method="POST">
                     @csrf
                     <input type="submit" value="Logout" class=" border-transparent hover:border-amber-50 duration-300 ease-in-out transition pb-1 text-olive-500">
-                </input>
+                    </input>
                 </form>
                 @else
-                  <a href="{{route('register')}}" class="border-transparent hover:border-amber-50 duration-300 ease-in-out transition pb-1 text-olive-500">
+                <a href="{{route('register')}}" class="border-transparent hover:border-amber-50 duration-300 ease-in-out transition pb-1 text-olive-500">
                     Sign Up
                 </a>
                 @endif
 
-{{-- >>>>>>> restore-auth-branch --}}
             </li>
         </ul>
     </div>
