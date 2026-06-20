@@ -2,13 +2,13 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+require_once __DIR__.'/user.php';
 Route::get('/', function () {
-    return view('auth.layouts.master');
+    return view('auth.home.register');
 });
-Route::get('/home', function () {
-    return view('user.home.home');
-});
+// Route::get('/home', function () {
+//     return view('user.home.home');
+// });
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
