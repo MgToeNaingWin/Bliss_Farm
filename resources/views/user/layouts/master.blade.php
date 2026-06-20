@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,10 +48,26 @@
                     Market
                 </a>
             </li>
+{{-- <<<<<<< HEAD
             <li class=" animate-glow ms-5 text-white font-bold text-lg cursor-pointer bg-yellow-300 px-3 py-1 rounded-full">
                 <a class="border-b-2 border-transparent hover:border-amber-50 duration-300 ease-in-out transition pb-1 text-olive-500">
                     Signup
                 </a>
+======= --}}
+            <li class=" ms-5 animate-glow text-white font-bold text-lg cursor-pointer bg-yellow-300 px-3 py-1 rounded-full">
+                @if(auth()->user())
+                <form action="{{route('logout')}}" method="POST">
+                    @csrf
+                    <input type="submit" value="Logout" class=" border-transparent hover:border-amber-50 duration-300 ease-in-out transition pb-1 text-olive-500">
+                </input>
+                </form>
+                @else
+                  <a href="{{route('register')}}" class="border-transparent hover:border-amber-50 duration-300 ease-in-out transition pb-1 text-olive-500">
+                    Sign Up
+                </a>
+                @endif
+
+{{-- >>>>>>> restore-auth-branch --}}
             </li>
         </ul>
     </div>
