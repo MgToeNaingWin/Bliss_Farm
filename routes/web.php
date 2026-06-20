@@ -9,6 +9,15 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('user.home.home');
 });
+Route::get('/disease-info', function(){
+    return view('user.home.disease-info');
+});
+Route::get('/news', function(){
+    return view('user.home.news');
+});
+Route::get('/market', function(){
+    return view('user.home.market');
+});
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

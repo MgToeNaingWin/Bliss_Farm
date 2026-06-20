@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @theme {
   --animate-glow: glow 1.5s infinite;
+  --color-nav-color: #346629; 
 
   @keyframes glow {
     0%, 100% { box-shadow: 0 0 5px olive; }

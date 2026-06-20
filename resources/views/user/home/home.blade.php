@@ -17,7 +17,7 @@
 
         <div class="flex gap-4">
             <button class="bg-yellow-500 hover:bg-yellow-600 text-slate-900 font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105">
-                Find a Home
+                Management
             </button>
             <button class="border-2 border-white hover:bg-white hover:text-slate-950 font-bold py-3 px-6 rounded-full transition duration-300 animate-glow">
                 Consult With Ai
