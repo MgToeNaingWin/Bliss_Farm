@@ -26,7 +26,7 @@
 
     <x-form-button>Sign Up</x-form-button>
     <a href="{{route('userHome')}}" class="bg-green-400 text-center hover:bg-green-500 text-white py-2 px-3 text-sm rounded-lg mx-2">As Guest</a>
-    <x-social-login-button> <i class="fa-brands fa-google me-2"></i> Login With Google</x-social-login-button>
+    <x-social-login-button href="{{route('socialLogin','google')}}"> <i class="fa-brands fa-google me-2"></i> Login With Google</x-social-login-button>
 
 
     <div class="flex justify-center items-center">
