@@ -25,7 +25,7 @@
             @enderror
 
                 <x-form-button>Sign Up</x-form-button>
-                <x-form-button><a href="{{route('userHome')}}">As Guest</a></x-form-button>
+                <x-form-button type="button"><a href="{{route('userHome')}}">As Guest</a></x-form-button>
                 <x-social-login-button> <i class="fa-brands fa-google me-2"></i> Login With Google</x-social-login-button>
 
 

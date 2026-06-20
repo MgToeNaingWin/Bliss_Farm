@@ -67,7 +67,7 @@
                 </a>
                 @endif
 
-{{-- >>>>>>> restore-auth-branch --}}
+{{--     --}}
             </li>
         </ul>
     </div>
