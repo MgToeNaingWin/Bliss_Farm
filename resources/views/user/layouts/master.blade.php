@@ -18,19 +18,29 @@
     <style>
         body {
             font-family: 'Bricolage Grotesque', sans-serif;
+            /* Inline fallback: ensures your background image stretches fully without repeating on any device */
+            background-image: url("{{ asset('masterImages/your-background.jpg') }}"); 
         }
     </style>
 </head>
 
-<body class="overflow-x-hidden m-0 p-0 ">
+<body class="overflow-x-hidden m-0 p-0 relative min-h-screen bg-cover bg-center bg-no-repeat">
     <div
-        class="absolute top-0 left-0 right-0 z-50 items-center flex justify-between bg-nav-color p-2 shadow-2xl rounded-full mt-5 border-2 border-amber-50 w-[95%] mx-auto">
-        <div class="rounded-full">
+        class="absolute top-0 left-0 right-0 z-50 items-center flex flex-col md:flex-row justify-between bg-nav-color p-2 shadow-2xl rounded-[1.5rem] md:rounded-full mt-5 border-2 border-amber-50 w-[95%] mx-auto">
+        
+        <div class="flex justify-between items-center w-full md:w-auto rounded-full">
             <a href="/home">
                 <img src="{{asset('masterImages/logo.png')}}" class="h-12 w-12 border-green-600 border-2 rounded-full ms-5">
             </a>
+            
+            <button id="hamburger-btn" class="flex md:hidden text-white me-5 focus:outline-none p-1" aria-label="Toggle Menu">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
         </div>
-        <ul class="items-center flex justify-center me-5 align-middle">
+
+        <ul id="nav-menu" class="hidden md:flex flex-col md:flex-row items-center justify-center w-full md:w-auto mt-3 md:mt-0 pb-2 md:pb-0 me-0 md:me-5 align-middle gap-3 md:gap-0">
             <li class="mx-5 text-white font-bold text-lg cursor-pointer">
                 <a href="/disease-info"
                     class="{{ request()->is('disease-info') ? 'border-b-2 border-amber-50' : 'border-b-2 border-transparent hover:border-amber-50' }} duration-300 ease-in-out transition pb-1">
@@ -49,7 +59,7 @@
                     Market
                 </a>
             </li>
-            <li class=" ms-5 animate-glow text-white font-bold text-lg cursor-pointer bg-yellow-300 px-3 py-1 rounded-full">
+            <li class=" ms-0 md:ms-5 animate-glow text-white font-bold text-lg cursor-pointer bg-yellow-300 px-3 py-1 rounded-full">
                 @if(auth()->user())
                 <form action="{{route('logout')}}" method="POST">
                     @csrf
@@ -61,7 +71,6 @@
                     Sign Up
                 </a>
                 @endif
-
             </li>
         </ul>
     </div>
@@ -73,17 +82,29 @@
         @yield('bdy')
     </div>
 </body>
-<script>
+<!-- <script>
+    // Mobile Hamburger Toggle Logic
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (hamburgerBtn && navMenu) {
+        hamburgerBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('hidden');
+        });
+    }
+
+    // Your exact, untouched carousel logic below
     const slidesContainer = document.getElementById('carousel-slides');
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     const indicators = document.querySelectorAll('.indicator');
 
     let currentIndex = 0;
-    const totalSlides = slidesContainer.children.length;
+    const totalSlides = slidesContainer ? slidesContainer.children.length : 0;
     let autoPlayTimer;
 
     function updateCarousel(index) {
+        if (!slidesContainer) return;
         if (index >= totalSlides) currentIndex = 0;
         else if (index < 0) currentIndex = totalSlides - 1;
         else currentIndex = index;
@@ -108,6 +129,7 @@
 
     // Auto Play Controls
     function startAutoPlay() {
+        if (!slidesContainer) return;
         autoPlayTimer = setInterval(() => {
             updateCarousel(currentIndex + 1);
         }, 6000); // Transitions every 6 seconds
@@ -119,8 +141,8 @@
     }
 
     // Event Listeners
-    nextBtn.addEventListener('click', () => updateCarousel(currentIndex + 1));
-    prevBtn.addEventListener('click', () => updateCarousel(currentIndex - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => updateCarousel(currentIndex + 1));
+    if (prevBtn) prevBtn.addEventListener('click', () => updateCarousel(currentIndex - 1));
 
     indicators.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -130,7 +152,9 @@
     });
 
     // Initialize layout and timers
-    updateCarousel(0);
-</script>
+    if (slidesContainer) {
+        updateCarousel(0);
+    }
+</script> -->
 
 </html>

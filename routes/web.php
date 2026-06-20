@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\NewsController;
+use App\Models\News;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 require_once __DIR__.'/user.php';
@@ -10,9 +12,7 @@ Route::get('/', function () {
 Route::get('/disease-info', function(){
     return view('user.home.disease-info');
 });
-Route::get('/news', function(){
-    return view('user.home.news');
-});
+Route::get('/news',[NewsController::class,'index']);
 Route::get('/market', function(){
     return view('user.home.market');
 });
