@@ -1,7 +1,8 @@
 <?php
 
 namespace Database\Seeders;
-
+use App\Models\DiseaseInfo;
+use App\Models\AnimalType;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -28,5 +29,9 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('admin123'),
             'role' => 'superadmin'
         ]);
+        AnimalType::factory()
+        ->count(5)
+        ->has(DiseaseInfo::factory()->count(3))
+        ->create();
     }
 }
