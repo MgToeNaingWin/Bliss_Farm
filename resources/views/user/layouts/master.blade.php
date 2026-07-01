@@ -12,13 +12,16 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Pliant:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
         rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @vite('resources/css/app.css')
 
     <style>
+admin-feature
         *, body {
         font-family: 'helvetica', sans-serif !important;
     }
+
+        
     </style>
 </head>
 
@@ -81,79 +84,22 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
 </body>
-<!-- <script>
-    // Mobile Hamburger Toggle Logic
-    const hamburgerBtn = document.getElementById('hamburger-btn');
-    const navMenu = document.getElementById('nav-menu');
+<script>
+    function showTab(tab) {
+      const tabs = ["look", "prevent", "treat"];
 
-    if (hamburgerBtn && navMenu) {
-        hamburgerBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('hidden');
-        });
+      tabs.forEach(t => {
+        document.getElementById(t).classList.add("hidden");
+        document.getElementById("btn-" + t).classList.remove("bg-white", "shadow", "text-green-600");
+        document.getElementById("btn-" + t).classList.add("text-gray-600");
+      });
+
+      document.getElementById(tab).classList.remove("hidden");
+      document.getElementById("btn-" + tab).classList.add("bg-white", "shadow", "text-green-600");
+      document.getElementById("btn-" + tab).classList.remove("text-gray-600");
     }
-
-    // Your exact, untouched carousel logic below
-    const slidesContainer = document.getElementById('carousel-slides');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const indicators = document.querySelectorAll('.indicator');
-
-    let currentIndex = 0;
-    const totalSlides = slidesContainer ? slidesContainer.children.length : 0;
-    let autoPlayTimer;
-
-    function updateCarousel(index) {
-        if (!slidesContainer) return;
-        if (index >= totalSlides) currentIndex = 0;
-        else if (index < 0) currentIndex = totalSlides - 1;
-        else currentIndex = index;
-
-        // Slide the track horizontally
-        slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-        // Synchronize indicator dot active styles
-        indicators.forEach((dot, i) => {
-            if (i === currentIndex) {
-                dot.classList.remove('bg-white/40');
-                dot.classList.add('bg-white', 'scale-110');
-            } else {
-                dot.classList.remove('bg-white', 'scale-110');
-                dot.classList.add('bg-white/40');
-            }
-        });
-
-        // Reset timer on user interaction so it doesn't instantly flip slides
-        resetAutoPlay();
-    }
-
-    // Auto Play Controls
-    function startAutoPlay() {
-        if (!slidesContainer) return;
-        autoPlayTimer = setInterval(() => {
-            updateCarousel(currentIndex + 1);
-        }, 6000); // Transitions every 6 seconds
-    }
-
-    function resetAutoPlay() {
-        clearInterval(autoPlayTimer);
-        startAutoPlay();
-    }
-
-    // Event Listeners
-    if (nextBtn) nextBtn.addEventListener('click', () => updateCarousel(currentIndex + 1));
-    if (prevBtn) prevBtn.addEventListener('click', () => updateCarousel(currentIndex - 1));
-
-    indicators.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const slideIndex = parseInt(e.target.getAttribute('data-slide'));
-            updateCarousel(slideIndex);
-        });
-    });
-
-    // Initialize layout and timers
-    if (slidesContainer) {
-        updateCarousel(0);
-    }
+ 
 </script> -->
 
 </html>
+
