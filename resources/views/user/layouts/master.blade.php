@@ -16,11 +16,17 @@
     @vite('resources/css/app.css')
 
     <style>
+<<<<<<< HEAD
         *,body {
         
                 font-family: Helvetica, Arial, sans-serif;
             
         }
+=======
+        *, body {
+        font-family: 'helvetica', sans-serif !important;
+    }
+>>>>>>> admin-feature
     </style>
 </head>
 
@@ -81,6 +87,7 @@
     <div>
         @yield('bdy')
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
 </body>
 <script>
     function showTab(tab) {
@@ -96,5 +103,74 @@
       document.getElementById("btn-" + tab).classList.add("bg-white", "shadow", "text-green-600");
       document.getElementById("btn-" + tab).classList.remove("text-gray-600");
     }
+<<<<<<< HEAD
   </script>
 </html>
+=======
+
+    // Your exact, untouched carousel logic below
+    const slidesContainer = document.getElementById('carousel-slides');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const indicators = document.querySelectorAll('.indicator');
+
+    let currentIndex = 0;
+    const totalSlides = slidesContainer ? slidesContainer.children.length : 0;
+    let autoPlayTimer;
+
+    function updateCarousel(index) {
+        if (!slidesContainer) return;
+        if (index >= totalSlides) currentIndex = 0;
+        else if (index < 0) currentIndex = totalSlides - 1;
+        else currentIndex = index;
+
+        // Slide the track horizontally
+        slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+        // Synchronize indicator dot active styles
+        indicators.forEach((dot, i) => {
+            if (i === currentIndex) {
+                dot.classList.remove('bg-white/40');
+                dot.classList.add('bg-white', 'scale-110');
+            } else {
+                dot.classList.remove('bg-white', 'scale-110');
+                dot.classList.add('bg-white/40');
+            }
+        });
+
+        // Reset timer on user interaction so it doesn't instantly flip slides
+        resetAutoPlay();
+    }
+
+    // Auto Play Controls
+    function startAutoPlay() {
+        if (!slidesContainer) return;
+        autoPlayTimer = setInterval(() => {
+            updateCarousel(currentIndex + 1);
+        }, 6000); // Transitions every 6 seconds
+    }
+
+    function resetAutoPlay() {
+        clearInterval(autoPlayTimer);
+        startAutoPlay();
+    }
+
+    // Event Listeners
+    if (nextBtn) nextBtn.addEventListener('click', () => updateCarousel(currentIndex + 1));
+    if (prevBtn) prevBtn.addEventListener('click', () => updateCarousel(currentIndex - 1));
+
+    indicators.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const slideIndex = parseInt(e.target.getAttribute('data-slide'));
+            updateCarousel(slideIndex);
+        });
+    });
+
+    // Initialize layout and timers
+    if (slidesContainer) {
+        updateCarousel(0);
+    }
+</script> -->
+
+</html>
+>>>>>>> admin-feature
