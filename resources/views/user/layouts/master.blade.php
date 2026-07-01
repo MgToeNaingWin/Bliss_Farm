@@ -16,23 +16,21 @@
     @vite('resources/css/app.css')
 
     <style>
-        body {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            /* Inline fallback: ensures your background image stretches fully without repeating on any device */
-            background-image: url("{{ asset('masterImages/your-background.jpg') }}"); 
-        }
+        *, body {
+        font-family: 'helvetica', sans-serif !important;
+    }
     </style>
 </head>
 
 <body class="overflow-x-hidden m-0 p-0 relative min-h-screen bg-cover bg-center bg-no-repeat">
     <div
         class="absolute top-0 left-0 right-0 z-50 items-center flex flex-col md:flex-row justify-between bg-nav-color p-2 shadow-2xl rounded-[1.5rem] md:rounded-full mt-5 border-2 border-amber-50 w-[95%] mx-auto">
-        
+
         <div class="flex justify-between items-center w-full md:w-auto rounded-full">
             <a href="/home">
                 <img src="{{asset('masterImages/logo.png')}}" class="h-12 w-12 border-green-600 border-2 rounded-full ms-5">
             </a>
-            
+
             <button id="hamburger-btn" class="flex md:hidden text-white me-5 focus:outline-none p-1" aria-label="Toggle Menu">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -81,6 +79,7 @@
     <div>
         @yield('bdy')
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
 </body>
 <!-- <script>
     // Mobile Hamburger Toggle Logic
