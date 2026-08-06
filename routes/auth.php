@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([],function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
-        ->name('register')->middleware('admin');
+        ->name('register');
 
     Route::post('register', [RegisteredUserController::class, 'store']);
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
-        ->name('login')->middleware('admin');
+        ->name('login');
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 

@@ -1,27 +1,27 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\DiseaseInfo;
+
 use App\Models\AnimalType;
-use Illuminate\Http\Request;
+use App\Models\DiseaseInfo;
 
 class DiseaseInfoController extends Controller
 {
-    public function index(DiseaseInfo $diseaseInfo){
-        $diseaseInfo= DiseaseInfo::all();
-        
-        return view('user.disease-info.index', compact('diseaseInfo'));
-    }
-    
-
-public function type_show(AnimalType $diseaseType)
-{
-    $diseaseInfo = DiseaseInfo::where('animal_type_id', $diseaseType->id)->get();
-    return view('user.disease-info.type-info', compact('diseaseType', 'diseaseInfo'));
-}
-    
-    public function detail_show(AnimalType $diseaseType, DiseaseInfo $diseaseInfo)
+    public function index()
     {
-        return view('user.disease-info.disease-detail', compact('diseaseType', 'diseaseInfo'));
+        $animals = AnimalType::all();
+        return view('admin.disease.index', compact('animals'));
+    }
+
+    public function showAnimalDiseases($id)
+    {
+        $animal = AnimalType::with('diseases')->findOrFail($id);
+        return view('admin.disease.show', compact('animal'));
+    }
+
+    public function showDiseaseDetail($id)
+    {
+        $disease = DiseaseInfo::findOrFail($id);
+        return view('admin.disease.detail', compact('disease'));
     }
 }

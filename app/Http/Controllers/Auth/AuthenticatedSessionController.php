@@ -1,12 +1,13 @@
 <?php
 
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -23,11 +24,26 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
-        $request->authenticate();
-        // dd(auth()->check());
+        // ၁။ မြန်မာစာ Validation စစ်ဆေးခြင်း
+        $request->validate([
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'string'],
+        ], [
+            'email.required' => 'အီးမေးလ် ဖြည့်စွက်ရန် လိုအပ်သည်။',
+            'email.email' => 'မှန်ကန်သော အီးမေးလ် ပုံစံ ဖြစ်ရပါမည်။',
+            'password.required' => 'စကားဝှက် ဖြည့်စွက်ရန် လိုအပ်သည်။',
+        ]);
 
+        // ၂။ Login အချက်အလက် စစ်ဆေးခြင်း (အီးမေးလ် သို့မဟုတ် စကားဝှက် မှားရင် Error ထုတ်ပေးမည်)
+        if (! Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
+            throw ValidationException::withMessages([
+                'email' => 'ထည့်သွင်းထားသော အီးမေးလ် (သို့မဟုတ်) စကားဝှက် မှားယွင်းနေပါသည်။',
+            ]);
+        }
+
+        // အကိုရေးထားတဲ့ မူလ logic အတိုင်း လုံးဝမပြင်ဘဲ ထားရှိထားပါတယ်
         $request->session()->regenerate();
 
         if($request->user()->role == 'admin'||$request->user()->role == 'superadmin'){

@@ -1,79 +1,252 @@
 @extends('admin.layouts.master')
+
 @section('content')
- <div class="">
+<div class="container mx-auto px-4 py-8 max-w-7xl antialiased text-gray-800">
 
-        <div class="my-2 flex flex-col 2xl:flex-row space-y-4 2xl:space-y-0 2xl:space-x-4 items-center">
-            <div class="w-200 flex flex-col 2xl:w-1/3">
+    <!-- Main Layout Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-                <div class="flex-1 bg-gray-200 rounded-lg shadow-xl p-12">
+        <!-- ဘယ်ဘက်ကော်လံ - ပရိုဖိုင်ကတ် (Read-only Display) -->
+        <div class="lg:col-span-4 w-full sticky top-6">
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col items-center transition-all duration-300 hover:shadow-md">
 
-
-                <div class="flex flex-col items-center">
-                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="w-40 border-4 border-white rounded-full">
-                <div class="flex items-center space-x-2 mt-2">
-                    <p class="text-2xl">Aung Aung Oo</p>
-                    <span class="bg-blue-500 rounded-full p-1" title="Verified">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-100 h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <!-- ပရိုဖိုင်ပုံပြသခြင်း -->
+                <div class="relative group">
+                    @if($user->profile_photo)
+                        <img src="{{ asset('storage/' . $user->profile_photo) }}"
+                             class="w-36 h-36 object-cover border-4 border-green-500 rounded-full shadow-md transition-transform duration-300 group-hover:scale-105"
+                             alt="ပရိုဖိုင်ပုံ">
+                    @else
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                             class="w-36 h-36 object-cover border-4 border-green-500 rounded-full shadow-md transition-transform duration-300 group-hover:scale-105"
+                             alt="ပရိုဖိုင်ပုံအလွတ်">
+                    @endif
+                    <!-- Verified စတစ်ကာ -->
+                    <span class="absolute bottom-1 right-2 bg-green-500 rounded-full p-2 border-4 border-white shadow-sm" title="အတည်ပြုပြီး">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="text-white h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path>
                         </svg>
                     </span>
                 </div>
-                <p class="text-gray-700">Bliss Farm System Controller Member</p>
-                <p class="text-sm text-gray-500">Meiktila, Thazi</p>
-            </div>
 
+                <!-- အမည်နှင့် အဆင့်အတန်း -->
+                <div class="text-center mt-5 w-full">
+                    <h2 class="text-xl font-bold text-gray-900 truncate px-2" title="{{ $user->name }}">{{ $user->name }}</h2>
+                    <span class="mt-2 text-xs font-semibold tracking-wide uppercase px-3 py-1 bg-green-50 text-green-700 rounded-full inline-flex items-center gap-1 border border-green-100">
+                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                        {{ $user->role === 'admin' ? 'အက်ဒမင်' : 'အသုံးပြုသူ' }}
+                    </span>
 
-                    <h4 class="text-xl text-gray-900 font-bold">Personal Info</h4>
-                    <ul class="mt-2 text-gray-700">
-                        <li class="flex border-y py-2">
-                            <span class="font-bold w-24">Full name:</span>
-                            <span class="text-gray-700">Aung Aung Oo</span>
-                        </li>
-                        <li class="flex border-b border-green-600 py-2">
-                            <span class="font-bold w-24">Role:</span>
-                            <span class="text-gray-700">Admin</span>
-                        </li>
-                        <li class="flex border-b border-green-600 py-2">
-                            <span class="font-bold w-24">Email:</span>
-                            <span class="text-gray-700">aung@gmail.com</span>
-                        </li>
-                        <li class="flex border-b border-green-600 py-2">
-                            <span class="font-bold w-24">Mobile:</span>
-                            <span class="text-gray-700">09678887678</span>
-                        </li>
-                        <li class="flex border-b border-green-600 py-2">
-                            <span class="font-bold w-24">Email:</span>
-                            <span class="text-gray-700">amandaross@example.com</span>
-                        </li>
-                        <li class="flex border-b border-green-600 py-2">
-                            <span class="font-bold w-24">Region:</span>
-                            <span class="text-gray-700">Meiktila</span>
-                        </li>
-                        <li class="flex border-b border-green-600 py-2">
-                            <span class="font-bold w-24">Township:</span>
-                            <span class="text-gray-700">Thazi</span>
-                        </li>
-                        <li class="flex items-center border-b border-green-600 py-2 space-x-2">
-                            <span class="font-bold w-24">Elsewhere:</span>
-                            <a href="#" title="Facebook">
-                                <svg class="w-5 h-5" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 506.86 506.86"><defs><style>.cls-1{fill:#1877f2;}.cls-2{fill:#fff;}</style></defs><path class="cls-1" d="M506.86,253.43C506.86,113.46,393.39,0,253.43,0S0,113.46,0,253.43C0,379.92,92.68,484.77,213.83,503.78V326.69H149.48V253.43h64.35V197.6c0-63.52,37.84-98.6,95.72-98.6,27.73,0,56.73,5,56.73,5v62.36H334.33c-31.49,0-41.3,19.54-41.3,39.58v47.54h70.28l-11.23,73.26H293V503.78C414.18,484.77,506.86,379.92,506.86,253.43Z"></path><path class="cls-2" d="M352.08,326.69l11.23-73.26H293V205.89c0-20,9.81-39.58,41.3-39.58h31.95V104s-29-5-56.73-5c-57.88,0-95.72,35.08-95.72,98.6v55.83H149.48v73.26h64.35V503.78a256.11,256.11,0,0,0,79.2,0V326.69Z"></path></svg>
-                            </a>
-                            <a href="#" title="Twitter">
-                                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 333333 333333" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"><path d="M166667 0c92048 0 166667 74619 166667 166667s-74619 166667-166667 166667S0 258715 0 166667 74619 0 166667 0zm90493 110539c-6654 2976-13822 4953-21307 5835 7669-4593 13533-11870 16333-20535-7168 4239-15133 7348-23574 9011-6787-7211-16426-11694-27105-11694-20504 0-37104 16610-37104 37101 0 2893 320 5722 949 8450-30852-1564-58204-16333-76513-38806-3285 5666-5022 12109-5022 18661v4c0 12866 6532 24246 16500 30882-6083-180-11804-1876-16828-4626v464c0 17993 12789 33007 29783 36400-3113 845-6400 1313-9786 1313-2398 0-4709-247-7007-665 4746 14736 18448 25478 34673 25791-12722 9967-28700 15902-46120 15902-3006 0-5935-184-8860-534 16466 10565 35972 16684 56928 16684 68271 0 105636-56577 105636-105632 0-1630-36-3209-104-4806 7251-5187 13538-11733 18514-19185l17-17-3 2z" fill="#1da1f2"></path></svg>
-                            </a>
-                            <a href="#" title="LinkedIn">
-                                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 333333 333333" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"><path d="M166667 0c92048 0 166667 74619 166667 166667s-74619 166667-166667 166667S0 258715 0 166667 74619 0 166667 0zm-18220 138885h28897v14814l418 1c4024-7220 13865-14814 28538-14814 30514-1 36157 18989 36157 43691v50320l-30136 1v-44607c0-10634-221-24322-15670-24322-15691 0-18096 11575-18096 23548v45382h-30109v-94013zm-20892-26114c0 8650-7020 15670-15670 15670s-15672-7020-15672-15670 7022-15670 15672-15670 15670 7020 15670 15670zm-31342 26114h31342v94013H96213v-94013z" fill="#0077b5"></path></svg>
-                            </a>
-                            <a href="#" title="Github">
-                                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="0" height="0" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 640 640"><path d="M319.988 7.973C143.293 7.973 0 151.242 0 327.96c0 141.392 91.678 261.298 218.826 303.63 16.004 2.964 21.886-6.957 21.886-15.414 0-7.63-.319-32.835-.449-59.552-89.032 19.359-107.8-37.772-107.8-37.772-14.552-36.993-35.529-46.831-35.529-46.831-29.032-19.879 2.209-19.442 2.209-19.442 32.126 2.245 49.04 32.954 49.04 32.954 28.56 48.922 74.883 34.76 93.131 26.598 2.882-20.681 11.15-34.807 20.315-42.803-71.08-8.067-145.797-35.516-145.797-158.14 0-34.926 12.52-63.485 32.965-85.88-3.33-8.078-14.291-40.606 3.083-84.674 0 0 26.87-8.61 88.029 32.8 25.512-7.075 52.878-10.642 80.056-10.76 27.2.118 54.614 3.673 80.162 10.76 61.076-41.386 87.922-32.8 87.922-32.8 17.398 44.08 6.485 76.631 3.154 84.675 20.516 22.394 32.93 50.953 32.93 85.879 0 122.907-74.883 149.93-146.117 157.856 11.481 9.921 21.733 29.398 21.733 59.233 0 42.792-.366 77.28-.366 87.804 0 8.516 5.764 18.473 21.992 15.354 127.076-42.354 218.637-162.274 218.637-303.582 0-176.695-143.269-319.988-320-319.988l-.023.107z"></path></svg>
-                            </a>
-                        </li>
-                    </ul>
+                    <p class="text-xs text-gray-500 mt-3 flex items-center justify-center gap-1.5 bg-gray-50 rounded-lg py-2 px-3 mx-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <span class="truncate">
+                            @if($user->township || $user->region)
+                                {{ $user->township }}{{ $user->township && $user->region ? '၊ ' : '' }}{{ $user->region }}
+                            @else
+                                နေရပ်လိပ်စာ မရှိပါ
+                            @endif
+                        </span>
+                    </p>
                 </div>
 
+                <!-- ကိုယ်ရေးအချက်အလက် စာရင်း -->
+                <div class="w-full mt-6 pt-6 border-t border-gray-100">
+                    <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                        <span>ကိုယ်ရေးအချက်အလက်များ</span>
+                    </h4>
+                    <div class="space-y-3.5 text-sm">
+                        <div class="flex items-start justify-between gap-4">
+                            <span class="text-gray-400 flex-shrink-0">အမည်</span>
+                            <span class="text-gray-900 font-medium text-right break-words">{{ $user->name }}</span>
+                        </div>
+                        <div class="flex items-center justify-between gap-4">
+                            <span class="text-gray-400 flex-shrink-0">အဆင့်အတန်း</span>
+                            <span class="text-green-600 font-semibold capitalize bg-green-50/50 px-2 py-0.5 rounded text-xs border border-green-100/50">{{ $user->role }}</span>
+                        </div>
+                        <div class="flex items-start justify-between gap-4">
+                            <span class="text-gray-400 flex-shrink-0">အီးမေးလ်</span>
+                            <span class="text-gray-900 font-medium text-right break-all">{{ $user->email }}</span>
+                        </div>
+                        <div class="flex items-center justify-between gap-4">
+                            <span class="text-gray-400 flex-shrink-0">ဖုန်းနံပါတ်</span>
+                            <span class="text-gray-900 font-medium text-right">{{ $user->phone ?? '-' }}</span>
+                        </div>
+                        <div class="flex items-start justify-between gap-4">
+                            <span class="text-gray-400 flex-shrink-0">ပြည်နယ်/တိုင်း</span>
+                            <span class="text-gray-900 font-medium text-right">{{ $user->region ?? '-' }}</span>
+                        </div>
+                        <div class="flex items-start justify-between gap-4">
+                            <span class="text-gray-400 flex-shrink-0">မြို့နယ်</span>
+                            <span class="text-gray-900 font-medium text-right">{{ $user->township ?? '-' }}</span>
+                        </div>
+                        <div class="flex items-start justify-between gap-4">
+                            <span class="text-gray-400 flex-shrink-0">ရပ်ကွက်/ရွာ</span>
+                            <span class="text-gray-900 font-medium text-right break-words">{{ $user->village ?? '-' }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ညာဘက်ကော်လံ - Form များစုစည်းမှု -->
+        <div class="lg:col-span-8 w-full flex flex-col gap-6">
+
+            <!-- ၁။ ပရိုဖိုင်အချက်အလက် ပြင်ဆင်ရန် Form -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8">
+                <div class="flex items-center gap-3 border-b border-gray-100 pb-4 mb-6">
+                    <span class="w-1.5 h-6 bg-green-500 rounded-full"></span>
+                    <h3 class="text-xl font-bold text-gray-900">ပရိုဖိုင်အချက်အလက် ပြင်ဆင်ခြင်း</h3>
+                </div>
+
+                <form action="{{ route('admin.profile.update') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+                    @csrf
+                    @method('PUT')
+
+                    <!-- Responsive Inputs Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <!-- အမည် -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">အမည် အပြည့်အစုံ</label>
+                            <input type="text" name="name" value="{{ old('name', $user->name) }}"
+                                   class="w-full px-3.5 py-2 border border-gray-200 rounded-xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 focus:outline-none transition-all duration-200 text-sm" required>
+                        </div>
+
+                        <!-- အီးမေးလ် -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">အီးမေးလ် လိပ်စာ</label>
+                            <input type="email" name="email" value="{{ old('email', $user->email) }}"
+                                   class="w-full px-3.5 py-2 border border-gray-200 rounded-xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 focus:outline-none transition-all duration-200 text-sm" required>
+                        </div>
+
+                        <!-- ဖုန်းနံပါတ် -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">ဖုန်းနံပါတ်</label>
+                            <input type="text" name="phone" value="{{ old('phone', $user->phone) }}"
+                                   class="w-full px-3.5 py-2 border border-gray-200 rounded-xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 focus:outline-none transition-all duration-200 text-sm">
+                        </div>
+
+                        <!-- ပြည်နယ်/တိုင်း -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">တိုင်းဒေသကြီး / ပြည်နယ်</label>
+                            <input type="text" name="region" value="{{ old('region', $user->region) }}"
+                                   class="w-full px-3.5 py-2 border border-gray-200 rounded-xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 focus:outline-none transition-all duration-200 text-sm">
+                        </div>
+
+                        <!-- မြို့နယ် -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">မြို့နယ်</label>
+                            <input type="text" name="township" value="{{ old('township', $user->township) }}"
+                                   class="w-full px-3.5 py-2 border border-gray-200 rounded-xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 focus:outline-none transition-all duration-200 text-sm">
+                        </div>
+
+                        <!-- ရပ်ကွက်/ကျေးရွာ -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">ရပ်ကွက် / ကျေးရွာ</label>
+                            <input type="text" name="village" value="{{ old('village', $user->village) }}"
+                                   class="w-full px-3.5 py-2 border border-gray-200 rounded-xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 focus:outline-none transition-all duration-200 text-sm">
+                        </div>
+                    </div>
+
+                    <!-- ဓာတ်ပုံတင်ရန် နေရာ -->
+                    <div class="bg-gray-50/50 rounded-xl p-4 border border-dashed border-gray-200">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">ပရိုဖိုင်ဓာတ်ပုံ အသစ်တင်ရန်</label>
+                        <input type="file" name="profile_photo"
+                               class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100 transition-all duration-200 cursor-pointer">
+                        <p class="text-xs text-gray-400 mt-2">လက်ခံမည့် ဖိုင်အမျိုးအစားများ - JPG, PNG, GIF (ဖိုင်ဆိုဒ် အများဆုံး 2MB အထိ)</p>
+                    </div>
+
+                    <!-- သိမ်းဆည်းရန် ခလုတ် -->
+                    <div class="flex justify-end">
+                        <button type="submit"
+                                class="w-full sm:w-auto px-5 py-2.5 bg-green-500 hover:bg-green-600 text-white font-medium text-sm rounded-xl shadow-sm hover:shadow-md transition-all duration-150 focus:outline-none focus:ring-4 focus:ring-green-500/20">
+                            ပြင်ဆင်မှုများကို သိမ်းဆည်းမည်
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- ၂။ စကားဝှက် ပြင်ဆင်ရန် Form -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8">
+                <div class="flex items-center gap-3 border-b border-gray-100 pb-4 mb-6">
+                    <span class="w-1.5 h-6 bg-amber-500 rounded-full"></span>
+                    <h3 class="text-xl font-bold text-gray-900">လုံခြုံရေးနှင့် စကားဝှက် ပြောင်းလဲခြင်း</h3>
+                </div>
+
+                <form action="{{ route('admin.profile.password') }}" method="POST" class="space-y-5">
+                    @csrf
+                    @method('PUT')
+
+                    <!-- လက်ရှိစကားဝှက် -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">လက်ရှိ အသုံးပြုနေသော စကားဝှက်</label>
+                        <input type="password" name="current_password"
+                               class="w-full px-3.5 py-2 border border-gray-200 rounded-xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 focus:outline-none transition-all duration-200 text-sm" required>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <!-- စကားဝှက်အသစ် -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">စကားဝှက်အသစ် (အနည်းဆုံး ၈ လုံး)</label>
+                            <input type="password" name="password"
+                                   class="w-full px-3.5 py-2 border border-gray-200 rounded-xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 focus:outline-none transition-all duration-200 text-sm" required>
+                        </div>
+
+                        <!-- စကားဝှက်အသစ်အား အတည်ပြုခြင်း -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">စကားဝှက်အသစ်ကို တစ်ကြိမ်ပြန်ရိုက်ပါ</label>
+                            <input type="password" name="password_confirmation"
+                                   class="w-full px-3.5 py-2 border border-gray-200 rounded-xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 focus:outline-none transition-all duration-200 text-sm" required>
+                        </div>
+                    </div>
+
+                    <!-- စကားဝှက်ပြောင်းလဲရန် ခလုတ် -->
+                    <div class="flex justify-end pt-2">
+                        <button type="submit"
+                                class="w-full sm:w-auto px-5 py-2.5 bg-green-500 hover:bg-green-600 text-white font-medium text-sm rounded-xl shadow-sm hover:shadow-md transition-all duration-150 focus:outline-none focus:ring-4 focus:ring-green-500/20">
+                            စကားဝှက် အသစ်လဲလှယ်မည်
+                        </button>
+                    </div>
+                </form>
             </div>
 
         </div>
-
     </div>
+</div>
+
+<!-- SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // ၁။ ပြင်ဆင်မှု အောင်မြင်သောအခါ SweetAlert ပြသခြင်း
+        @if(session('sweet_success'))
+            Swal.fire({
+                title: 'အောင်မြင်ပါသည်!',
+                text: "{{ session('sweet_success') }}",
+                icon: 'success',
+                confirmButtonText: 'ကောင်းပြီ',
+                confirmButtonColor: '#22c55e' // green-500
+            });
+        @endif
+
+        // ၂။ Validation Error များရှိပါက SweetAlert ဖြင့် ပြသခြင်း
+        @if ($errors->any())
+            let errorMessages = '';
+            @foreach ($errors->all() as $error)
+                errorMessages += '• {{ $error }}\n';
+            @endforeach
+
+            Swal.fire({
+                title: 'သတိပေးချက်!',
+                text: errorMessages,
+                icon: 'error',
+                confirmButtonText: 'ပြန်လည်စစ်ဆေးမည်',
+                confirmButtonColor: '#ef4444' // red-500
+            });
+        @endif
+    });
+</script>
 @endsection

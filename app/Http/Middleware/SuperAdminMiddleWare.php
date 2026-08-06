@@ -15,10 +15,9 @@ class SuperAdminMiddleWare
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if( auth()->user()->role == 'superadmin'){
-            return $next($request);
-        }else{
-            return back();
+        if (!auth()->check() || auth()->user()->role !== 'superadmin') {
+            return redirect()->route('login');
         }
+        return $next($request);
     }
 }

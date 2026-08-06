@@ -51,8 +51,10 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
-        return to_route('userHome');
+
+        // Auth::login($user);
+        // return view('auth.home.login');
+        return redirect()->route('login')->with('status', 'အကောင့်အောင်မြင်စွာ ပြုလုပ်ပြီးပါပြီ။ Login ဝင်ရောက်ပါ။');
 
         // return redirect(route('dashboard', absolute: false));
     }

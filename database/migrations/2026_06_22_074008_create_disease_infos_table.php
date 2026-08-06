@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('disease_infos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('animal_type_id')
-                  ->constrained()
+                  ->constrained('animal_types')
                   ->cascadeOnDelete();
             $table->string('disease_title');
             $table->longText('disease_desc')->nullable();
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->longText('symptoms')->nullable();      // Signs
             $table->longText('prevent')->nullable();   // Prevention
             $table->longText('treated')->nullable();   // Treatment
-        
+
             $table->timestamps();
         });
     }

@@ -15,10 +15,14 @@ class UserMiddleWare
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if( auth()->user()->role == 'user'){
-        return $next($request);
-    }else{
+        if (!auth()->check()) {
+            return redirect()->route('login');
+        }
+
+        if (auth()->user()->role == 'user') {
+            return $next($request);
+        }
+
         return back();
-    }
     }
 }

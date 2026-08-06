@@ -16,20 +16,21 @@ class AdminMiddleWare
      */
     public function handle(Request $request, Closure $next): Response
     {
-         if( auth()->user()){
+        if (!auth()->check()) {
+            return redirect()->route('login');
+        }
 
-            if( auth()->user()->role == 'admin' || auth()->user()->role == 'superadmin'){
-                if( $request->route()->getName() == 'login' || $request->route()->getName() == 'register'){
-                    return back();
-                }
-                return $next($request);
-            }
-        return back();
-     }else{
+        $user = auth()->user();
+
+        if ($user->role !== 'admin' && $user->role !== 'superadmin') {
+            return back();
+        }
+
+        if ($request->route()->getName() === 'login' || $request->route()->getName() === 'register') {
+            return back();
+        }
+
         return $next($request);
-     }
-
     }
-
-    }
+}
 

@@ -40,10 +40,16 @@ return [
     'client_secret' => env('GOOGLE_CLIENT_SECRET'),
     'redirect' => 'http://127.0.0.1:8000/auth/google/callback',
 ],
-'google' => [
-    'client_id' => env('GOOGLE_CLIENT_ID'),
-    'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-    'redirect' => 'http://127.0.0.1:8000/auth/google/callback',
+
+'huggingface' => [
+    'token' => env('HF_TOKEN'),
+],
+
+'pusher' => [
+    'key' => env('PUSHER_APP_KEY'),
+    'secret' => env('PUSHER_APP_SECRET'),
+    'app_id' => env('PUSHER_APP_ID'),
+    'cluster' => env('PUSHER_APP_CLUSTER', 'ap1'),
 ],
 
 ];
