@@ -141,15 +141,105 @@
                 </span>
             </a>
 
-            <!-- ── Desktop Navigation ── -->
+            <!-- ── Desktop Navigation (single, de-duplicated set) ── -->
             <div class="hidden lg:flex items-center gap-1 xl:gap-2">
 
-                <!-- 1. Market Page (Public) -->
-                <a href="/market"
-                   class="nav-link {{ request()->is('market*') ? 'active' : '' }} px-3 py-2 text-white/80 hover:text-white font-semibold text-xs xl:text-sm rounded-xl transition duration-200 flex items-center gap-1.5">
-                    <i class="fa-solid fa-chart-line text-emerald-400 text-xs"></i>
-                    <span>ဈေးကွက်</span>
-                </a>
+                <!-- 1. Management Dropdown (Livestock + Financial) -->
+                <div x-data="{ open: false }" @click.outside="open = false" class="relative">
+                    <button @click="open = !open" type="button"
+                        class="nav-link {{ request()->is('user/livestock*') || request()->is('user/financial*') ? 'active' : '' }} px-3 py-2 text-white/80 hover:text-white font-semibold text-xs xl:text-sm rounded-xl transition duration-200 flex items-center gap-1.5 focus:outline-none">
+                        <i class="fa-solid fa-cow text-amber-400 text-xs"></i>
+                        <span>စီမံခန့်ခွဲမှု</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] opacity-70 transition-transform duration-200"
+                            :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+
+                    <div x-show="open" x-cloak x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 scale-95 -translate-y-1"
+                        x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-150"
+                        x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 scale-95 -translate-y-1"
+                        class="absolute left-0 mt-2 w-64 bg-emerald-950 border border-emerald-700/50 rounded-2xl shadow-2xl py-2 z-50 overflow-hidden max-h-[80vh] overflow-y-auto">
+
+                        <!-- === LIVESTOCK MANAGEMENT === -->
+                        <div class="px-4 py-1 text-[10px] text-emerald-400/60 uppercase tracking-wider font-semibold">တိရစ္ဆာန်စီမံခန့်ခွဲမှု</div>
+
+                        <a href="{{ route('user.livestock.dashboard') }}"
+                            class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-emerald-100/90 hover:text-white hover:bg-emerald-800/50 transition">
+                            <i class="fa-solid fa-chart-pie text-amber-400 w-4"></i>
+                            <span>ဒက်ရှ်ဘုတ်</span>
+                        </a>
+
+                        <a href="{{ route('user.livestock.index') }}"
+                            class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-emerald-100/90 hover:text-white hover:bg-emerald-800/50 transition">
+                            <i class="fa-solid fa-list text-amber-400 w-4"></i>
+                            <span>တိရစ္ဆာန်များစာရင်း</span>
+                        </a>
+
+                        <a href="{{ route('user.livestock.create') }}"
+                            class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-emerald-100/90 hover:text-white hover:bg-emerald-800/50 transition">
+                            <i class="fa-solid fa-plus-circle text-amber-400 w-4"></i>
+                            <span>တိရစ္ဆာန်အသစ်ထည့်ရန်</span>
+                        </a>
+
+                        <div class="border-t border-emerald-800/60 my-1"></div>
+
+                        <a href="{{ route('user.livestock.index') }}?tab=health"
+                            class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-emerald-100/90 hover:text-white hover:bg-emerald-800/50 transition">
+                            <i class="fa-solid fa-heart-pulse text-amber-400 w-4"></i>
+                            <span>ကျန်းမာရေးမှတ်တမ်း</span>
+                        </a>
+
+                        <a href="{{ route('user.livestock.index') }}?tab=feeding"
+                            class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-emerald-100/90 hover:text-white hover:bg-emerald-800/50 transition">
+                            <i class="fa-solid fa-utensils text-amber-400 w-4"></i>
+                            <span>အစာကျွေးမှတ်တမ်း</span>
+                        </a>
+
+                        <a href="{{ route('user.livestock.index') }}?tab=reports"
+                            class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-emerald-100/90 hover:text-white hover:bg-emerald-800/50 transition">
+                            <i class="fa-solid fa-file text-amber-400 w-4"></i>
+                            <span>အစီရင်ခံစာများ</span>
+                        </a>
+
+                        <!-- === FINANCIAL MANAGEMENT === -->
+                        <div class="border-t border-emerald-800/60 my-1"></div>
+                        <div class="px-4 py-1 text-[10px] text-emerald-400/60 uppercase tracking-wider font-semibold">ဘဏ္ဍာရေးစီမံခန့်ခွဲမှု</div>
+
+                        <a href="{{ route('user.financial.dashboard') }}"
+                            class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-emerald-100/90 hover:text-white hover:bg-emerald-800/50 transition">
+                            <i class="fa-solid fa-wallet text-amber-400 w-4"></i>
+                            <span>ဘဏ္ဍာရေးဒက်ရှ်ဘုတ်</span>
+                        </a>
+
+                        <a href="{{ route('user.financial.records') }}"
+                            class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-emerald-100/90 hover:text-white hover:bg-emerald-800/50 transition">
+                            <i class="fa-solid fa-receipt text-amber-400 w-4"></i>
+                            <span>ငွေပေးချေမှုစာရင်း</span>
+                        </a>
+
+                        <a href="{{ route('user.financial.create') }}"
+                            class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-emerald-100/90 hover:text-white hover:bg-emerald-800/50 transition">
+                            <i class="fa-solid fa-plus-circle text-amber-400 w-4"></i>
+                            <span>ငွေပေးချေမှုအသစ်</span>
+                        </a>
+
+                        <div class="border-t border-emerald-800/60 my-1"></div>
+
+                        <a href="{{ route('user.financial.monthly-report') }}"
+                            class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-emerald-100/90 hover:text-white hover:bg-emerald-800/50 transition">
+                            <i class="fa-solid fa-calendar-check text-amber-400 w-4"></i>
+                            <span>လစဉ်အစီရင်ခံစာ</span>
+                        </a>
+
+                        <a href="{{ route('user.financial.yearly-report') }}"
+                            class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-emerald-100/90 hover:text-white hover:bg-emerald-800/50 transition">
+                            <i class="fa-solid fa-calendar-days text-amber-400 w-4"></i>
+                            <span>နှစ်စဉ်အစီရင်ခံစာ</span>
+                        </a>
+                    </div>
+                </div>
 
                 <!-- 2. Animal Disease Page (Public) -->
                 <a href="{{ route('diseaseList') }}"
@@ -192,14 +282,12 @@
                          x-transition:leave-end="opacity-0 scale-95 -translate-y-1"
                          class="absolute left-0 mt-2 w-48 bg-emerald-950 border border-emerald-700/50 rounded-2xl shadow-2xl py-2 z-50 overflow-hidden">
 
-                        <!-- ရောင်းရန်တင်မည် (Auth Required) -->
                         <a href="{{ auth()->check() ? route('postCreatePage') : route('login') }}"
                            class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-emerald-100/90 hover:text-white hover:bg-emerald-800/50 transition">
                             <i class="fa-solid fa-plus-circle text-amber-400 w-4"></i>
                             <span>ရောင်းရန် တင်မည်</span>
                         </a>
 
-                        <!-- အရောင်းပိုစ့်များ ကြည့်ရန် (Public) -->
                         <a href="{{ route('postListPage') }}"
                            class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-emerald-100/90 hover:text-white hover:bg-emerald-800/50 transition">
                             <i class="fa-solid fa-list-ul text-amber-400 w-4"></i>
@@ -219,7 +307,7 @@
 
             <!-- ── Desktop Auth / Profile Dropdown ── -->
             <div class="hidden lg:flex items-center gap-2 shrink-0">
-                @if(auth()->user())
+                @if(auth()->check())
                     <div x-data="{ open: false }" @click.outside="open = false" class="relative">
                         <button @click="open = !open"
                                 type="button"
@@ -302,12 +390,33 @@
         <div id="mobile-menu" class="mobile-menu lg:hidden mx-2 mt-2 bg-emerald-900/95 backdrop-blur-xl rounded-2xl border border-emerald-700/30 shadow-xl overflow-hidden">
             <div class="p-4 space-y-1">
 
-                <!-- ဈေးကွက် (Public) -->
-                <a href="/market"
-                   class="flex items-center gap-3 px-4 py-2.5 text-white/80 hover:text-white hover:bg-white/5 rounded-xl font-semibold text-sm transition duration-200 {{ request()->is('market*') ? 'bg-white/10 text-amber-400' : '' }}">
-                    <i class="fa-solid fa-chart-line w-5 text-center text-sm {{ request()->is('market*') ? 'text-amber-400' : 'text-emerald-400' }}"></i>
-                    ဈေးကွက်
-                </a>
+                <!-- Management (Livestock + Financial) -->
+                <div x-data="{ open: false }" class="rounded-xl overflow-hidden">
+                    <button @click="open = !open"
+                            type="button"
+                            class="w-full flex items-center justify-between px-4 py-2.5 text-white/80 hover:text-white hover:bg-white/5 font-semibold text-sm transition duration-200">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-cow w-5 text-center text-sm text-amber-400"></i>
+                            <span>စီမံခန့်ခွဲမှု</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-xs transition-transform duration-200" :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+
+                    <div x-show="open" x-cloak class="pl-12 pr-4 py-2 space-y-2 bg-emerald-950/40 border-l-2 border-amber-400/50 my-1">
+                        <a href="{{ route('user.livestock.dashboard') }}" class="flex items-center gap-2.5 text-xs text-white/80 hover:text-amber-400 py-1 transition">
+                            <i class="fa-solid fa-chart-pie text-amber-400/80"></i><span>ဒက်ရှ်ဘုတ်</span>
+                        </a>
+                        <a href="{{ route('user.livestock.index') }}" class="flex items-center gap-2.5 text-xs text-white/80 hover:text-amber-400 py-1 transition">
+                            <i class="fa-solid fa-list text-amber-400/80"></i><span>တိရစ္ဆာန်များစာရင်း</span>
+                        </a>
+                        <a href="{{ route('user.financial.dashboard') }}" class="flex items-center gap-2.5 text-xs text-white/80 hover:text-amber-400 py-1 transition">
+                            <i class="fa-solid fa-wallet text-amber-400/80"></i><span>ဘဏ္ဍာရေးဒက်ရှ်ဘုတ်</span>
+                        </a>
+                        <a href="{{ route('user.financial.records') }}" class="flex items-center gap-2.5 text-xs text-white/80 hover:text-amber-400 py-1 transition">
+                            <i class="fa-solid fa-receipt text-amber-400/80"></i><span>ငွေပေးချေမှုစာရင်း</span>
+                        </a>
+                    </div>
+                </div>
 
                 <!-- တိရစ္ဆာန်ရောဂါ (Public) -->
                 <a href="{{ route('diseaseList') }}"
@@ -323,7 +432,7 @@
                     AI ရောဂါခွဲခြမ်း
                 </a>
 
-                <!-- သတင်းနှင့် ဗဟုသုတ (Public) -->
+                <!-- သတင်းနှင့် ဗဟုသုတ (Public) -->
                 <a href="/news"
                    class="flex items-center gap-3 px-4 py-2.5 text-white/80 hover:text-white hover:bg-white/5 rounded-xl font-semibold text-sm transition duration-200 {{ request()->is('news*') ? 'bg-white/10 text-amber-400' : '' }}">
                     <i class="fa-solid fa-newspaper w-5 text-center text-sm {{ request()->is('news*') ? 'text-amber-400' : 'text-emerald-400' }}"></i>
@@ -343,14 +452,12 @@
                     </button>
 
                     <div x-show="open" x-cloak class="pl-12 pr-4 py-2 space-y-2 bg-emerald-950/40 border-l-2 border-amber-400/50 my-1">
-                        <!-- ရောင်းရန် တင်မည် (Auth Required) -->
                         <a href="{{ auth()->check() ? route('postCreatePage') : route('login') }}"
                            class="flex items-center gap-2.5 text-xs text-white/80 hover:text-amber-400 py-1 transition">
                             <i class="fa-solid fa-plus-circle text-amber-400/80"></i>
                             <span>ရောင်းရန် တင်မည်</span>
                         </a>
 
-                        <!-- အရောင်းပိုစ့်များ ကြည့်ရန် (Public) -->
                         <a href="{{ route('postListPage') }}"
                            class="flex items-center gap-2.5 text-xs text-white/80 hover:text-amber-400 py-1 transition">
                             <i class="fa-solid fa-list-ul text-amber-400/80"></i>
@@ -368,7 +475,7 @@
 
                 <div class="border-t border-emerald-700/50 my-2"></div>
 
-                @if(auth()->user())
+                @if(auth()->check())
                     <div class="px-4 py-2 mb-2 bg-emerald-950/40 rounded-xl border border-emerald-800/40">
                         <div class="flex items-center gap-3 mb-2">
                             <div class="w-9 h-9 bg-amber-400/20 rounded-full flex items-center justify-center overflow-hidden border border-amber-400/40 shrink-0">
@@ -444,18 +551,13 @@
 
         // ── Navbar Scroll Effect ──
         const navbar = document.getElementById('navbar');
-        let lastScroll = 0;
 
         window.addEventListener('scroll', function() {
-            const currentScroll = window.pageYOffset;
-
-            if (currentScroll > 50) {
+            if (window.pageYOffset > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
-
-            lastScroll = currentScroll;
         });
 
         // ── Mobile Menu Toggle ──
@@ -468,8 +570,8 @@
         });
 
         // Close mobile menu on link click
-        mobileMenu.querySelectorAll('a').forEach(function(link) {
-            link.addEventListener('click', function() {
+        mobileMenu.querySelectorAll('a, button[type="submit"]').forEach(function(el) {
+            el.addEventListener('click', function() {
                 hamburgerBtn.classList.remove('open');
                 mobileMenu.classList.remove('open');
             });

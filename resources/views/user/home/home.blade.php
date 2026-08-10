@@ -225,7 +225,7 @@
         <!-- Main Headline -->
         <h1 class="font-display text-4xl sm:text-5xl md:text-7xl font-extrabold text-white leading-[1.1] mb-6 tracking-tight">
             မွေးမြူရေးနှင့်
-            <span class="gradient-text">စိုက်ပျိုးရေး</span>
+            <span class="gradient-text p-4">စိုက်ပျိုးရေး</span>
             <br>သတင်းနှင့် ဗဟုသုတ
         </h1>
 
@@ -371,7 +371,7 @@
                     <p class="text-stone-500 text-sm leading-relaxed mb-6">
                         နေ့စဉ် အချိန်နှင့်တပြေးညီ ပြောင်းလဲနေသော အသားတိုးကြက်၊ ဥစားကြက်၊ ဝက် နှင့် နွား ဈေးနှုန်းပေါက်ဈေး အချက်အလက်များ။
                     </p>
-                    <a href="/market" class="inline-flex items-center gap-2 text-emerald-700 font-bold text-sm group-hover:gap-3 transition-all duration-300">
+                    <a href="/list" class="inline-flex items-center gap-2 text-emerald-700 font-bold text-sm group-hover:gap-3 transition-all duration-300">
                         ဈေးနှုန်းများ စစ်ဆေးရန်
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
                     </a>
