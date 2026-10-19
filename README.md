@@ -3,6 +3,7 @@
 **AI-Powered Livestock Management Platform for Myanmar Farmers**
 
 Bliss Farm is a web-based platform designed to help farmers manage livestock, identify potential animal diseases, access livestock-related information, and connect with buyers and sellers. The project combines modern web technologies with AI-assisted features to support smarter livestock farming in Myanmar.
+![Bliss Farm Banner](HomePage.png)
 
 ## 📌 Table of Contents
 
