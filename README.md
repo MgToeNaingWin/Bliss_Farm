@@ -1,60 +1,299 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🌱 Bliss Farm
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**AI-Powered Livestock Management Platform for Myanmar Farmers**
 
-## About Laravel
+Bliss Farm is a web-based platform designed to help farmers manage livestock, identify potential animal diseases, access livestock-related information, and connect with buyers and sellers. The project combines modern web technologies with AI-assisted features to support smarter livestock farming in Myanmar.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📌 Table of Contents
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [About the Project](#-about-the-project)
+- [Key Features](#-key-features)
+- [Technology Stack](#-technology-stack)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Environment Configuration](#-environment-configuration)
+- [Database Setup](#-database-setup)
+- [Running the Application](#-running-the-application)
+- [Team](#-team)
+- [Future Improvements](#-future-improvements)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🌾 About the Project
 
-## Learning Laravel
+Livestock farming plays an important role in Myanmar's agricultural economy. However, farmers may face challenges in managing animals, identifying diseases, accessing reliable information, and finding suitable markets.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+Bliss Farm aims to address these challenges through an integrated digital platform that provides livestock management tools, AI-assisted disease detection, and online marketplace functionality.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Our mission:** To make livestock farming smarter, more accessible, and more efficient through technology.
 
-## Laravel Sponsors
+## ✨ Key Features
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 🐄 1. Livestock Management
+- Register and manage livestock records.
+- Automatically generate animal identification numbers.
+- Support multiple animal types, including pigs, cows, goats, chickens, ducks, fish, buffaloes, sheep, and others.
+- Track animal age, weight, purpose, and other relevant information.
+- View livestock statistics and dashboard charts.
 
-### Premium Partners
+### 🩺 2. AI-Assisted Animal Disease Detection
+- Support disease-related analysis for selected livestock types.
+- Help users identify potential diseases using AI-powered features.
+- Provide relevant disease information and guidance.
+- Support image-based analysis where configured.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+*AI-generated results are informational and should not replace professional veterinary diagnosis.*
 
-## Contributing
+### 🛒 3. Livestock Marketplace
+- Browse livestock-related products and listings.
+- Connect buyers and sellers.
+- Support livestock trading and marketplace interactions.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 📰 4. Livestock News and Information
+- Access livestock-related news and educational information.
+- Help farmers learn about animal care, farming practices, and disease prevention.
 
-## Code of Conduct
+### 💬 5. Community and Conversations
+- Enable communication between users.
+- Support community interaction and information sharing.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 🔐 6. User Authentication
+- Support user authentication and account management.
+- Provide Google sign-in where configured.
+- Protect user-specific features and data through appropriate authorization.
 
-## Security Vulnerabilities
+### 🤖 7. AI and Workflow Integration
+- Integrate AI services for selected application features.
+- Support configurable AI model providers.
+- Allow workflow automation through n8n where configured.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 🧰 Technology Stack
 
-## License
+| Technology | Purpose |
+|---|---|
+| PHP | Backend programming |
+| Laravel | Web application framework |
+| MySQL | Relational database |
+| HTML5 | Web page structure |
+| CSS3 | Styling and responsive layouts |
+| JavaScript | Interactive functionality |
+| Vite | Frontend asset development |
+| Chart.js | Dashboard data visualization |
+| Laravel Socialite | Social authentication |
+| AI APIs | AI-assisted functionality |
+| n8n | Workflow automation, where configured |
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# Bliss_Farm
+## 📂 Project Structure
+
+The project follows Laravel's standard application structure.
+
+```text
+Bliss_Farm/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   └── Middleware/
+│   ├── Models/
+│   └── Providers/
+├── bootstrap/
+├── config/
+├── database/
+│   ├── factories/
+│   ├── migrations/
+│   └── seeders/
+├── public/
+├── resources/
+│   ├── css/
+│   ├── js/
+│   └── views/
+├── routes/
+│   ├── web.php
+│   └── console.php
+├── storage/
+├── tests/
+├── .env.example
+├── artisan
+├── composer.json
+├── package.json
+└── README.md
+```
+
+*Additional folders and files may exist depending on the modules and integrations implemented in your current branch.*
+
+## 🚀 Getting Started
+
+Follow these instructions to run Bliss Farm locally.
+
+### Prerequisites
+
+Install the following software before starting:
+
+- PHP 8.2 or a compatible version required by `composer.json`
+- Composer
+- Node.js and npm
+- MySQL
+- Git
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/MgToeNaingWin/Bliss_Farm.git
+cd Bliss_Farm
+```
+
+### 2. Install PHP Dependencies
+
+```bash
+composer install
+```
+
+### 3. Install Frontend Dependencies
+
+```bash
+npm install
+```
+
+### 4. Configure the Environment
+
+Create a local environment file:
+
+```bash
+cp .env.example .env
+```
+
+Generate the Laravel application key:
+
+```bash
+php artisan key:generate
+```
+
+### 5. Create the Database
+
+Create a MySQL database named `bliss_farm`, or choose another name and update your environment configuration accordingly.
+
+### 6. Configure Database Credentials
+
+Update the database settings in your `.env` file.
+
+```dotenv
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=bliss_farm
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Replace the username and password with your local MySQL credentials.
+
+### 7. Run Database Migrations
+
+```bash
+php artisan migrate
+```
+
+If the project provides seeders and you want to populate the database with sample data, you may also run:
+
+```bash
+php artisan db:seed
+```
+
+Only run database reset commands on a development database when you are comfortable losing its existing data.
+
+### 8. Build Frontend Assets
+
+For development:
+
+```bash
+npm run dev
+```
+
+Alternatively, build production assets:
+
+```bash
+npm run build
+```
+
+### 9. Start the Laravel Server
+
+Open another terminal in the project directory and run:
+
+```bash
+php artisan serve
+```
+
+Open the local URL displayed in your terminal, usually:
+
+http://127.0.0.1:8000
+
+## ⚙️ Environment Configuration
+
+Some features require additional configuration depending on the integrations enabled in your project.
+
+Examples include:
+
+- Google OAuth credentials for Google sign-in.
+- AI provider API keys for AI-assisted features.
+- Mail service credentials for email functionality.
+- n8n webhook URLs for configured automation workflows.
+
+Keep these values in your local `.env` file or an appropriate secret-management system.
+
+**Security note:** Never commit your `.env` file, passwords, API keys, OAuth secrets, or other sensitive credentials to GitHub. Use `.env.example` to document the required variable names without including real secret values.
+
+## 👥 Team
+
+**Team Name: CollabX**
+
+Bliss Farm is developed collaboratively by the following team members:
+
+- **Mg Toe Naing Win** — Team Leader
+- Mg Aung Aung Oo
+- Mg Aung Phyo Naing
+- Mg Wai Phyo Thar
+- Mg Min Htet Naing
+
+## 🔮 Future Improvements
+
+Potential areas for future development include:
+
+- Improved AI-assisted disease detection and validation.
+- More detailed livestock health and growth analytics.
+- Enhanced livestock price prediction and market insights.
+- Mobile-friendly interfaces and mobile application support.
+- Multilingual support for Myanmar farmers.
+- Notifications and reminders for livestock care.
+- Additional marketplace and communication features.
+- Improved security, testing, and deployment automation.
+
+## 🤝 Contributing
+
+Contributions, suggestions, and bug reports are welcome.
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Make your changes.
+4. Test your changes locally.
+5. Commit your work with a clear commit message.
+6. Open a pull request for review.
+
+Example:
+
+```bash
+git checkout -b feature/your-feature
+git add .
+git commit -m "Add your feature"
+git push origin feature/your-feature
+```
+
+## 📄 License
+
+This project is developed as a collaborative software project. A specific open-source license has not been declared in this README.
+
+If you intend to distribute the project publicly, consider adding an appropriate `LICENSE` file.
+
+---
+
+**Bliss Farm — Empowering Myanmar Farmers Through Technology 🌱**
+
+GitHub Repository: https://github.com/MgToeNaingWin/Bliss_Farm
